@@ -1,12 +1,14 @@
 require 'Viewer'
-require 'NewScene'
-require 'SecondScene'
-
 function love.load()
-
+  scenes = {'NewScene','SecondScene'}
+  for k,value in pairs(scenes) do
+    require('scenes/' .. value)
+  end
 end
 
 function love.draw()
+  
+  
   Viewer:Draw()
   
   if love.keyboard.isDown('a') then

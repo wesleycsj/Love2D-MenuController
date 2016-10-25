@@ -13,7 +13,6 @@ end
 
 function Viewer:Draw()
   views[self.currentView]:Draw()
-  love.graphics.print("N View: " .. #views .. ' self.currentView:' .. self.currentView, 300,100)
 end
 function Viewer:getCurrentView()
   return self.currentView
@@ -25,4 +24,12 @@ end
 
 function Viewer:AddView(o)
   table.insert(views, o)
+end
+
+function Viewer:getViews()
+  local v = {}
+  for key,value in ipairs(views) do
+    table.insert(v, value.name)
+  end
+  return v
 end
