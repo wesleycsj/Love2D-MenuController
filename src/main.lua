@@ -1,19 +1,20 @@
-require 'Viewer'
+-- require the Viewer library to the my variable
+viewerManager = require 'Viewer'
+
 function love.load()
-  scenes = {'NewScene','SecondScene'}
-  for k,value in pairs(scenes) do
-    require('scenes/' .. value)
-  end
+    -- add some Scenes to the viewerManager
+    viewerManager:AddScenes({'NewScene','SecondScene'})
+    viewerManager:Load(1) -- The number is the fistScene to be loaded, in this case, 1 = 'NewScene'
 end
 
 function love.draw()
-  
-  
-  Viewer:Draw()
-  
-  if love.keyboard.isDown('a') then
-    Viewer:setCurrentView(1)
-  elseif love.keyboard.isDown('d') then
-          Viewer:setCurrentView(2)
-  end
+  viewerManager:Draw()
+end
+
+function love.keypressed(key, scancode, isrepeat)
+    if key == 'a' then
+      viewerManager:setCurrentView("previous")
+    elseif key == 'd' then
+      viewerManager:setCurrentView("next")
+    end
 end

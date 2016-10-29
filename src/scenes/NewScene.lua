@@ -1,12 +1,20 @@
-require '../Scene'
-
-NewScene = Scene.new()
-NewScene.name = 'NewScene'
-
-function NewScene:Draw()
-  love.graphics.setBackgroundColor(0,0,255)
-  love.graphics.print("Scene:NewScene",50,50)
+-- obrigatory:
+local Scene = {}
+Scene.__index = Scene;
+function Scene:New ()
+    local nw = {}
+    setmetatable(nw, Scene)
+    return nw
 end
 
+-- Your Scene functions, have fun :)
+function Scene:Load ()
+end
 
-NewScene:AddScene(NewScene)
+function Scene:Draw()
+  love.graphics.setBackgroundColor(20,20,150)
+  love.graphics.print("Scene: Scene",50,50)
+end
+
+-- This return is also necessary
+return Scene:New()
